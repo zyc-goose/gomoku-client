@@ -1,0 +1,12 @@
+.square {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.square-empty:hover {
+    box-sizing: border-box;
+    border: 0.5vh solid green;
+}
