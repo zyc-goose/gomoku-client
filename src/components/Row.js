@@ -15,6 +15,7 @@ class Row extends React.Component {
             col={x}
             onClick={this.props.onClick}
             value={this.props.line[x]}
+            isLastMove={this.props.row == this.props.lastRow && x == this.props.lastCol}
             />)}
         </div>)
     }

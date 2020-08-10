@@ -43,7 +43,7 @@ class Square extends React.Component {
                 }}></div>
 
                 <div 
-                className="square square-empty"
+                className={"square" + (this.props.isLastMove ? " square-last-move" : "")}
                 onClick={() => this.props.onClick(this.props.row, this.props.col)}
                 />
             </div>

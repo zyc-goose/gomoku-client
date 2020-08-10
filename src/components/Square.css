@@ -6,7 +6,12 @@
     height: 100%;
 }
 
-.square-empty:hover {
+.square:hover {
     box-sizing: border-box;
     border: 0.5vh solid green;
+}
+
+.square-last-move {
+    box-sizing: border-box;
+    border: 0.5vh solid red;
 }

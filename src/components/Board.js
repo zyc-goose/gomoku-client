@@ -10,10 +10,15 @@ class Board extends React.Component {
         this.game = new Game()
         this.state = {
             game: this.game,
-            playerNext: true
+            playerNext: true,
+            lastRow: -1,
+            lastCol: -1
         }
         this.handleMove = this.handleMove.bind(this)
         this.engine = new Engine(this.game)
+        if (!this.state.playerNext) {
+            this.runEngine()
+        }
     }
     render() {
         return (<div style={{
@@ -27,6 +32,8 @@ class Board extends React.Component {
             row={x} 
             line={this.state.game.state[x]}
             onClick={this.handleMove}
+            lastRow={this.state.lastRow}
+            lastCol={this.state.lastCol}
             />)}
         </div>)
     }
@@ -34,12 +41,24 @@ class Board extends React.Component {
     handleMove(row, col) {
         if (this.state.playerNext) {
             this.state.game.set(row, col)
-            this.setState({playerNext: false})
-            this.engine.request(point => {
-                this.state.game.set(point.row, point.col)
-                this.setState({playerNext: true})
+            this.setState({
+                playerNext: false,
+                lastRow: row,
+                lastCol: col
             })
+            this.runEngine()
         }
+    }
+
+    runEngine() {
+        this.engine.request(point => {
+            this.state.game.set(point.row, point.col)
+            this.setState({
+                playerNext: true,
+                lastRow: point.row,
+                lastCol: point.col
+            })
+        })
     }
 }
 
